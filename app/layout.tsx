@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/Providers";
+import CartModal from "@/components/CartModal";
+import ChatWidget from "@/components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,38 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/* Global Organization JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "SelfX",
+              "url": "https://selfx.com",
+              "logo": "https://selfx.com/logo.png",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-800-555-0199",
+                "contactType": "customer service",
+                "areaServed": "US",
+                "availableLanguage": "en"
+              },
+              "sameAs": [
+                "https://facebook.com/selfx",
+                "https://twitter.com/selfx",
+                "https://linkedin.com/company/selfx"
+              ]
+            })
+          }}
+        />
+        <Providers>
+          {children}
+          <CartModal />
+          <ChatWidget />
+        </Providers>
+      </body>
     </html>
   );
 }
