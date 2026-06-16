@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, X, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function ProductFinder() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
@@ -242,14 +243,14 @@ export default function ProductFinder() {
                   <p className="text-sm text-zinc-450 leading-relaxed max-w-sm mb-8">{getRecommendation().desc}</p>
 
                   <div className="flex flex-col sm:flex-row gap-3 w-full">
-                    <a
+                    <Link
                       href="/book-demo"
                       onClick={() => setIsQuizOpen(false)}
                       className="flex-1 flex items-center justify-center gap-1.5 py-3.5 rounded-full text-sm font-bold bg-red-600 text-white hover:bg-red-700 transition-all hover:scale-102"
                     >
                       Book Free Setup Demo
                       <ArrowRight className="w-4 h-4" />
-                    </a>
+                    </Link>
                     <button
                       onClick={resetQuiz}
                       className="flex-1 py-3.5 rounded-full text-sm font-bold border border-zinc-850 text-zinc-400 hover:text-white transition-colors"

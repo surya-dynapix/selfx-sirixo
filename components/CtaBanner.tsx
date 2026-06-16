@@ -1,50 +1,47 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Phone } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function CtaBanner() {
+  const content = useSiteContent("ctabanner", {
+    title: "Ready to upgrade your restaurant's digital ecosystem?",
+    subtitle: "Join over 2,500+ successful operators scaling their businesses with our end-to-end POS and Kiosk solutions.",
+    primaryButtonText: "Book a Free Demo",
+    secondaryButtonText: "Call +1 (800) 555-0199",
+    backgroundImage: "/Modern_premium_takeaway_café_and_202606111244.jpeg"
+  });
+
   return (
-    <section className="relative w-full min-h-[450px] md:min-h-[550px] py-20 md:py-28 bg-gradient-to-br from-red-500 via-red-600 to-red-900 flex flex-col items-center justify-center text-center text-white overflow-hidden z-10">
+    <section className="py-24 bg-zinc-950 relative overflow-hidden">
       
-      {/* Centered Brand Logo */}
-      <div className="mb-8 md:mb-12 relative z-10">
-        <span className="text-2xl font-black tracking-tight text-white select-none">
-    
-        </span>
-      </div>
+      <Image 
+        src={content.backgroundImage} 
+        alt="Background" 
+        fill 
+        className="object-cover opacity-30 mix-blend-overlay"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none" />
 
-      {/* Huge centered all-caps typography */}
-      <div className="max-w-4xl px-6 mb-12 relative z-10 flex flex-col items-center">
-        <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-white flex flex-col select-none items-center">
-          <span>ORDER.</span>
-          <span>SERVE.</span>
-          <span>DELIGHT.</span>
-          <span className="text-zinc-950">REPEAT.</span>
+      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
+          {content.title}
         </h2>
+        <p className="text-lg md:text-xl text-zinc-400 font-medium mb-10 max-w-2xl mx-auto">
+          {content.subtitle}
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link href="/book-demo" className="w-full sm:w-auto bg-red-600 text-white font-bold px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-colors shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_40px_rgba(220,38,38,0.5)]">
+            {content.primaryButtonText} <ArrowRight className="w-5 h-5" />
+          </Link>
+          <a href="tel:+18005550199" className="w-full sm:w-auto bg-white/10 text-white font-bold px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-white/20 transition-colors backdrop-blur-md">
+            <Phone className="w-5 h-5" /> {content.secondaryButtonText}
+          </a>
+        </div>
       </div>
 
-      {/* Centered Pill Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 px-6 relative z-10 justify-center w-full max-w-md sm:max-w-none">
-        <a
-          href="/book-demo"
-          className="inline-flex items-center justify-center gap-1.5 px-8 py-4 rounded-full text-base font-bold bg-white text-zinc-950 hover:bg-zinc-100 hover:scale-102 active:scale-98 transition-all shadow-md"
-        >
-          Book a Demo
-          <ArrowRight className="w-4 h-4" />
-        </a>
-        
-        <a
-          href="#solutions"
-          className="inline-flex items-center justify-center gap-1.5 px-8 py-4 rounded-full text-base font-bold bg-transparent border border-white text-white hover:bg-white/10 hover:scale-102 active:scale-98 transition-all"
-        >
-          Explore Solutions
-        </a>
-      </div>
-
-      {/* Ambient background blur circles */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full filter blur-3xl pointer-events-none -z-0" />
-      
     </section>
   );
 }

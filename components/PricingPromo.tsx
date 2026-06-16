@@ -42,7 +42,7 @@ export default function PricingPromo() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <a
-            href="/product"
+            href="/"
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-base font-bold bg-[#E61E38] text-white hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/25 hover:scale-105 active:scale-95"
           >
             Know more

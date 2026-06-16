@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowUp, Globe } from "lucide-react";
 import { subscribeToNewsletter } from "@/app/actions";
+import Link from "next/link";
 
 // Custom SVG Icons to match visual reference perfectly
 const Facebook = (props: React.SVGProps<SVGSVGElement>) => (
@@ -83,9 +84,9 @@ export default function Footer() {
         
         {/* Top Section: Logo & Back to top */}
         <div className="flex items-center justify-between border-b border-[#333333] pb-10 mb-12">
-          <a href="/" className="shrink-0">
+          <Link href="/" className="shrink-0">
             <img src="/logo.png" alt="SelfX Logo" className="h-8 w-auto brightness-0 invert" />
-          </a>
+          </Link>
           <button 
             onClick={scrollToTop}
             className="flex items-center gap-2 bg-white text-black font-bold px-5 py-2.5 rounded-full hover:bg-transparent hover:text-white border border-white transition-all text-xs tracking-wider uppercase"
@@ -156,16 +157,16 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="text-white text-base font-bold tracking-tight">Products</h4>
               <nav className="flex flex-col gap-3 text-sm font-medium">
-                <a href="/product/pos-software" className="hover:text-white transition-colors">POS Cloud Software</a>
-                <a href="/product/mobile-app" className="hover:text-white transition-colors">Mobile User APP</a>
-                <a href="/product/kitchen-system" className="hover:text-white transition-colors">Kitchen System</a>
-                <a href="/product/kiosk-app" className="hover:text-white transition-colors">Self-Ordering Kiosk APP</a>
-                <a href="/product/online-ordering" className="hover:text-white transition-colors">Online Ordering</a>
-                <a href="/product/digital-dining" className="hover:text-white transition-colors">Digital Dining</a>
-                <a href="/product/kds" className="hover:text-white transition-colors">Kitchen Display (KDS)</a>
-                <a href="/product/signage" className="hover:text-white transition-colors">Digital Signage</a>
-                <a href="/product/vending" className="hover:text-white transition-colors">Smart Vending</a>
-                <a href="/product/whatsapp" className="hover:text-white transition-colors">WhatsApp Ordering</a>
+                <Link href="/product/pos-software" className="hover:text-white transition-colors">POS Cloud Software</Link>
+                <Link href="/product/mobile-app" className="hover:text-white transition-colors">Mobile User APP</Link>
+                <Link href="/product/kitchen-system" className="hover:text-white transition-colors">Kitchen System</Link>
+                <Link href="/product/kiosk-app" className="hover:text-white transition-colors">Self-Ordering Kiosk APP</Link>
+                <Link href="/product/online-ordering" className="hover:text-white transition-colors">Online Ordering</Link>
+                <Link href="/product/digital-dining" className="hover:text-white transition-colors">Digital Dining</Link>
+                <Link href="/product/kds" className="hover:text-white transition-colors">Kitchen Display (KDS)</Link>
+                <Link href="/product/signage" className="hover:text-white transition-colors">Digital Signage</Link>
+                <Link href="/product/vending" className="hover:text-white transition-colors">Smart Vending</Link>
+                <Link href="/product/whatsapp" className="hover:text-white transition-colors">WhatsApp Ordering</Link>
               </nav>
             </div>
 
@@ -173,9 +174,9 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="text-white text-base font-bold tracking-tight">Solutions</h4>
               <nav className="flex flex-col gap-3 text-sm font-medium">
-                <a href="/solutions/corporate-tech-parks" className="hover:text-white transition-colors">Corporate Tech Parks</a>
-                <a href="/solutions/universities" className="hover:text-white transition-colors">Universities</a>
-                <a href="/solutions/food-courts" className="hover:text-white transition-colors">Food Courts</a>
+                <Link href="/solutions/corporate-tech-parks" className="hover:text-white transition-colors">Corporate Tech Parks</Link>
+                <Link href="/solutions/universities" className="hover:text-white transition-colors">Universities</Link>
+                <Link href="/solutions/food-courts" className="hover:text-white transition-colors">Food Courts</Link>
               </nav>
             </div>
 
@@ -183,8 +184,8 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="text-white text-base font-bold tracking-tight">Hardware & Pricing</h4>
               <nav className="flex flex-col gap-3 text-sm font-medium">
-                <a href="/hardware" className="hover:text-white transition-colors text-red-400 font-bold">View Hardware</a>
-                <a href="/pricing" className="hover:text-white transition-colors text-red-400 font-bold">View Pricing</a>
+                <Link href="/hardware" className="hover:text-white transition-colors text-red-400 font-bold">View Hardware</Link>
+                <Link href="/pricing" className="hover:text-white transition-colors text-red-400 font-bold">View Pricing</Link>
               </nav>
             </div>
 
@@ -192,11 +193,11 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="text-white text-base font-bold tracking-tight">Company</h4>
               <nav className="flex flex-col gap-3 text-sm font-medium">
-                <a href="/about" className="hover:text-white transition-colors">About Us</a>
-                <a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a>
-                <a href="/integrations" className="hover:text-white transition-colors">Integrations</a>
-                <a href="/support" className="hover:text-white transition-colors">Support & Help Centre</a>
-                <a href="/blog" className="hover:text-white transition-colors">Blogs / Insights</a>
+                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link href="/case-studies" className="hover:text-white transition-colors">Case Studies</Link>
+                <Link href="/integrations" className="hover:text-white transition-colors">Integrations</Link>
+                <Link href="/support" className="hover:text-white transition-colors">Support & Help Centre</Link>
+                <Link href="/blog" className="hover:text-white transition-colors">Blogs / Insights</Link>
               </nav>
             </div>
 
@@ -237,9 +238,9 @@ export default function Footer() {
 
           {/* Privacy Links */}
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[#707070]">
-            <a href="/terms" className="hover:text-white transition-colors">Terms & Conditions</a>
-            <a href="/privacy" className="hover:text-white transition-colors">Privacy Policies</a>
-            <a href="/cookies" className="hover:text-white transition-colors">Cookies</a>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policies</Link>
+            <Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link>
           </div>
         </div>
 

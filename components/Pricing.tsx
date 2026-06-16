@@ -1,55 +1,62 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
-
-const plans = [
-  {
-    name: "Starter",
-    price: "₹0",
-    period: "/ month",
-    description: "Essential POS software features for new businesses just getting started.",
-    features: [
-      "Core Point of Sale",
-      "Basic inventory management",
-      "Standard reporting",
-      "Email support"
-    ],
-    buttonText: "Start Free",
-    popular: false,
-  },
-  {
-    name: "Professional",
-    price: "₹4,999",
-    period: "/ month",
-    description: "Advanced tools for growing restaurants needing multi-terminal sync.",
-    features: [
-      "Everything in Starter",
-      "Kitchen Display System (KDS)",
-      "Advanced inventory tracking",
-      "Staff management & permissions",
-      "24/7 Priority Support"
-    ],
-    buttonText: "Get Started",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    price: "₹12,999",
-    period: "/ month",
-    description: "Full suite ecosystem for high-volume franchises and large venues.",
-    features: [
-      "Everything in Professional",
-      "Self-service kiosk software",
-      "Custom API integrations",
-      "Dedicated account manager",
-      "White-labeled mobile app"
-    ],
-    buttonText: "Contact Sales",
-    popular: false,
-  }
-];
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function Pricing() {
+  const content = useSiteContent("pricing", {
+    badgeText: "Software Package",
+    subtitle: "Transparent pricing designed to scale alongside your restaurant's order volume. No hidden fees.",
+    plan1Name: "Starter",
+    plan1Price: "₹0",
+    plan1Period: "/ month",
+    plan1Desc: "Essential POS software features for new businesses just getting started.",
+    plan1Features: "Core Point of Sale,Basic inventory management,Standard reporting,Email support",
+    plan1Button: "Start Free",
+    plan2Name: "Professional",
+    plan2Price: "₹4,999",
+    plan2Period: "/ month",
+    plan2Desc: "Advanced tools for growing restaurants needing multi-terminal sync.",
+    plan2Features: "Everything in Starter,Kitchen Display System (KDS),Advanced inventory tracking,Staff management & permissions,24/7 Priority Support",
+    plan2Button: "Get Started",
+    plan3Name: "Enterprise",
+    plan3Price: "₹12,999",
+    plan3Period: "/ month",
+    plan3Desc: "Full suite ecosystem for high-volume franchises and large venues.",
+    plan3Features: "Everything in Professional,Self-service kiosk software,Custom API integrations,Dedicated account manager,White-labeled mobile app",
+    plan3Button: "Contact Sales"
+  });
+
+  const plans = [
+    {
+      name: content.plan1Name,
+      price: content.plan1Price,
+      period: content.plan1Period,
+      description: content.plan1Desc,
+      features: content.plan1Features.split(",").map((s: string) => s.trim()).filter(Boolean),
+      buttonText: content.plan1Button,
+      popular: false,
+    },
+    {
+      name: content.plan2Name,
+      price: content.plan2Price,
+      period: content.plan2Period,
+      description: content.plan2Desc,
+      features: content.plan2Features.split(",").map((s: string) => s.trim()).filter(Boolean),
+      buttonText: content.plan2Button,
+      popular: true,
+    },
+    {
+      name: content.plan3Name,
+      price: content.plan3Price,
+      period: content.plan3Period,
+      description: content.plan3Desc,
+      features: content.plan3Features.split(",").map((s: string) => s.trim()).filter(Boolean),
+      buttonText: content.plan3Button,
+      popular: false,
+    }
+  ];
+
   return (
     <section className="py-24 bg-zinc-50 relative border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-6">
@@ -57,10 +64,10 @@ export default function Pricing() {
         {/* Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <div className="inline-block bg-zinc-950 text-white font-bold text-sm tracking-widest uppercase px-6 py-2 rounded-full mb-6">
-            Software Package
+            {content.badgeText}
           </div>
           <p className="text-lg text-zinc-500 font-medium">
-            Transparent pricing designed to scale alongside your restaurant's order volume. No hidden fees.
+            {content.subtitle}
           </p>
         </div>
 

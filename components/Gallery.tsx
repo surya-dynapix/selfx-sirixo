@@ -2,32 +2,53 @@
 
 import Image from "next/image";
 import { ArrowRight, Star } from "lucide-react";
-
-const testimonials = [
-  {
-    quote: "Our morning rush at the Boba station used to build long queues. Since installing the kiosks, order processing speed is up by 40%. Average order values grew by 22% in the first two months.",
-    author: "Elena Chen",
-    role: "Founder, Yume Boba Tea",
-    image: "/gallery-boba.png",
-    logo: "/boba-logo.png",
-  },
-  {
-    quote: "SelfX's vertical kiosk hardware integrated perfectly into our dining space. Families can seat themselves, select items, and pay securely at their own pace. It reduced ticket errors to practically zero.",
-    author: "Marcus Lindqvist",
-    role: "Operations, Nordic Kitchen",
-    image: "/gallery-dining.png",
-    logo: "/nordic-logo.png",
-  },
-  {
-    quote: "Switching to this POS system was the best decision for our franchise. The real-time cloud sync means I can update prices across all 15 locations from my laptop in seconds.",
-    author: "Sarah Jenkins",
-    role: "CEO, Burger Bistro",
-    image: "/Ultra-realistic_cinematic_hero-banner_photography_of_202606081403.jpeg",
-    logo: "/bistro-logo.png",
-  },
-];
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function Gallery() {
+  const content = useSiteContent("gallery", {
+    title: "Insights from Others on their <span class=\"text-red-600\">Growth Journey</span>",
+    buttonText: "See All Success Stories",
+    test1Quote: "Our morning rush at the Boba station used to build long queues. Since installing the kiosks, order processing speed is up by 40%. Average order values grew by 22% in the first two months.",
+    test1Author: "Elena Chen",
+    test1Role: "Founder, Yume Boba Tea",
+    test1Image: "/gallery-boba.png",
+    test1Logo: "/boba-logo.png",
+    test2Quote: "SelfX's vertical kiosk hardware integrated perfectly into our dining space. Families can seat themselves, select items, and pay securely at their own pace. It reduced ticket errors to practically zero.",
+    test2Author: "Marcus Lindqvist",
+    test2Role: "Operations, Nordic Kitchen",
+    test2Image: "/gallery-dining.png",
+    test2Logo: "/nordic-logo.png",
+    test3Quote: "Switching to this POS system was the best decision for our franchise. The real-time cloud sync means I can update prices across all 15 locations from my laptop in seconds.",
+    test3Author: "Sarah Jenkins",
+    test3Role: "CEO, Burger Bistro",
+    test3Image: "/Ultra-realistic_cinematic_hero-banner_photography_of_202606081403.jpeg",
+    test3Logo: "/bistro-logo.png"
+  });
+
+  const testimonials = [
+    {
+      quote: content.test1Quote,
+      author: content.test1Author,
+      role: content.test1Role,
+      image: content.test1Image,
+      logo: content.test1Logo,
+    },
+    {
+      quote: content.test2Quote,
+      author: content.test2Author,
+      role: content.test2Role,
+      image: content.test2Image,
+      logo: content.test2Logo,
+    },
+    {
+      quote: content.test3Quote,
+      author: content.test3Author,
+      role: content.test3Role,
+      image: content.test3Image,
+      logo: content.test3Logo,
+    },
+  ];
+
   return (
     <section className="py-24 bg-white border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-6">
@@ -35,12 +56,10 @@ export default function Gallery() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-5xl font-black text-zinc-900 tracking-tight mb-4">
-              Insights from Others on their <span className="text-red-600">Growth Journey</span>
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-black text-zinc-900 tracking-tight mb-4" dangerouslySetInnerHTML={{ __html: content.title }} />
           </div>
           <button className="shrink-0 flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full font-bold hover:bg-red-700 transition-colors">
-            See All Success Stories <ArrowRight className="w-4 h-4" />
+            {content.buttonText} <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 

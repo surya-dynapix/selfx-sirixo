@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useInView, animate } from "framer-motion";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 interface CounterProps {
   value: number;
@@ -30,14 +31,29 @@ function Counter({ value, suffix = "", decimals = 0 }: CounterProps) {
   return <span ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white">0{suffix}</span>;
 }
 
-const statsData = [
-  { value: 4000, suffix: "+", label: "Active Terminals" },
-  { value: 2.5, suffix: "B+", decimals: 1, label: "Orders Processed" },
-  { value: 80, suffix: "M+", label: "Happy Customers" },
-  { value: 4, suffix: "", label: "Continents" },
-];
-
 export default function Stats() {
+  const content = useSiteContent("stats", {
+    stat1Value: "4000",
+    stat1Suffix: "+",
+    stat1Label: "Active Terminals",
+    stat2Value: "2.5",
+    stat2Suffix: "B+",
+    stat2Label: "Orders Processed",
+    stat3Value: "80",
+    stat3Suffix: "M+",
+    stat3Label: "Happy Customers",
+    stat4Value: "4",
+    stat4Suffix: "",
+    stat4Label: "Continents"
+  });
+
+  const statsData = [
+    { value: parseFloat(content.stat1Value), suffix: content.stat1Suffix, label: content.stat1Label, decimals: content.stat1Value.includes('.') ? content.stat1Value.split('.')[1].length : 0 },
+    { value: parseFloat(content.stat2Value), suffix: content.stat2Suffix, label: content.stat2Label, decimals: content.stat2Value.includes('.') ? content.stat2Value.split('.')[1].length : 0 },
+    { value: parseFloat(content.stat3Value), suffix: content.stat3Suffix, label: content.stat3Label, decimals: content.stat3Value.includes('.') ? content.stat3Value.split('.')[1].length : 0 },
+    { value: parseFloat(content.stat4Value), suffix: content.stat4Suffix, label: content.stat4Label, decimals: content.stat4Value.includes('.') ? content.stat4Value.split('.')[1].length : 0 },
+  ];
+
   return (
     <section className="py-20 bg-red-700 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">

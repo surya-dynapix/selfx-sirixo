@@ -3,36 +3,38 @@
 import { useState } from "react";
 import Image from "next/image";
 import { CheckCircle2, ChevronRight } from "lucide-react";
-
-const workflows = [
-  { 
-    title: "Self-ordering & Kiosk Sync", 
-    desc: "Instantly sync menu items, stock levels, and price changes across your entire network of POS terminals and self-service kiosks.",
-    image: "/pos cloud.png"
-  },
-  { 
-    title: "Payment Integration: Stripe, Square, etc.", 
-    desc: "Accept all major credit cards, Apple Pay, and Google Pay with zero friction. Our seamless integrations ensure secure, lightning-fast transactions.",
-    image: "/A_cinematic_futuristic_fintech_ecosystem_202606111305.jpeg"
-  },
-  { 
-    title: "Kitchen Display (KDS) & Routing", 
-    desc: "Automatically route orders to the correct prep stations. Keep your back-of-house perfectly synchronized with front-of-house operations.",
-    image: "/selfx kitchen.png"
-  },
-  { 
-    title: "Inventory Management", 
-    desc: "Track ingredient levels in real-time. Automatically generate purchase orders when stock runs low and minimize food waste.",
-    image: "/software.png"
-  },
-  { 
-    title: "In-depth Analytics & Reports", 
-    desc: "Make data-driven decisions with real-time dashboards. Track top-selling items, peak hours, and staff performance metrics instantly.",
-    image: "/Ultra-realistic_premium_product_photography_of_202606091839.jpeg"
-  },
-];
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function FeatureHighlight() {
+  const content = useSiteContent("featurehighlight", {
+    title: "Built for Real Hospitality Workflows",
+    subtitle: "Streamlining operations from front of house to back of house with seamless integrations and real-time syncing.",
+    buttonText: "Explore Software Capabilities",
+    feat1Title: "Self-ordering & Kiosk Sync",
+    feat1Desc: "Instantly sync menu items, stock levels, and price changes across your entire network of POS terminals and self-service kiosks.",
+    feat1Image: "/pos cloud.png",
+    feat2Title: "Payment Integration: Stripe, Square, etc.",
+    feat2Desc: "Accept all major credit cards, Apple Pay, and Google Pay with zero friction. Our seamless integrations ensure secure, lightning-fast transactions.",
+    feat2Image: "/A_cinematic_futuristic_fintech_ecosystem_202606111305.jpeg",
+    feat3Title: "Kitchen Display (KDS) & Routing",
+    feat3Desc: "Automatically route orders to the correct prep stations. Keep your back-of-house perfectly synchronized with front-of-house operations.",
+    feat3Image: "/selfx kitchen.png",
+    feat4Title: "Inventory Management",
+    feat4Desc: "Track ingredient levels in real-time. Automatically generate purchase orders when stock runs low and minimize food waste.",
+    feat4Image: "/software.png",
+    feat5Title: "In-depth Analytics & Reports",
+    feat5Desc: "Make data-driven decisions with real-time dashboards. Track top-selling items, peak hours, and staff performance metrics instantly.",
+    feat5Image: "/Ultra-realistic_premium_product_photography_of_202606091839.jpeg"
+  });
+
+  const workflows = [
+    { title: content.feat1Title, desc: content.feat1Desc, image: content.feat1Image },
+    { title: content.feat2Title, desc: content.feat2Desc, image: content.feat2Image },
+    { title: content.feat3Title, desc: content.feat3Desc, image: content.feat3Image },
+    { title: content.feat4Title, desc: content.feat4Desc, image: content.feat4Image },
+    { title: content.feat5Title, desc: content.feat5Desc, image: content.feat5Image },
+  ];
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -42,10 +44,10 @@ export default function FeatureHighlight() {
         {/* Top Centered Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-zinc-900 tracking-tight mb-6">
-            Built for Real Hospitality Workflows
+            {content.title}
           </h2>
           <p className="text-lg text-zinc-500 font-medium">
-            Streamlining operations from front of house to back of house with seamless integrations and real-time syncing.
+            {content.subtitle}
           </p>
         </div>
 
@@ -84,7 +86,7 @@ export default function FeatureHighlight() {
                   {workflows[activeIndex].desc}
                 </p>
                 <button className="text-red-600 font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all self-start">
-                  Explore Software Capabilities <ChevronRight className="w-4 h-4" />
+                  {content.buttonText} <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>

@@ -4,72 +4,87 @@ import { useState } from "react";
 import Image from "next/image";
 import { Plus, X, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const solutions = [
-  {
-    id: 1,
-    title: "SelfX POS Cloud Software & Hardware",
-    description: "The ultimate cloud POS system for rapid checkout, real-time analytics, and fluid inventory tracking. Hand-in-hand integration with sleek hardware devices.",
-    image: "/selfox-pos (1).jpg",
-    accent: "Hardware & Cloud POS",
-    quote: "Our front counters have never run smoother. Staff training time went from days to minutes, and the offline transactions buffer ensures we never lose a sale even if internet feeds drop.",
-    author: "Elena Chen, Yume Boba Tea",
-    details: [
-      "Real-time split billing and table mapping",
-      "Robust offline operations buffering",
-      "Instant inventory sync and stock alerts",
-      "Live integration with kitchen thermal printers"
-    ]
-  },
-  {
-    id: 2,
-    title: "Your Own Restaurant Delivery App / Website",
-    description: "Reclaim your profits from third-party aggregators. Sell directly to your customers with your branded, ultra-fast ordering app and responsive web portal.",
-    image: "/selfox-mobile-delivry-app.jpg",
-    accent: "Branded Digital Ordering",
-    quote: "Reclaiming our digital ordering channel with a custom branded app saved us over ₹45,000 in monthly aggregator commissions. Customers love the direct checkout flow.",
-    author: "Marcus Lindqvist, Nordic Kitchen",
-    details: [
-      "Zero commission fees per digital order",
-      "Complete ownership of client email & phone data",
-      "Interactive coupon and push notification engine",
-      "Mobile-first responsive ordering interface"
-    ]
-  },
-  {
-    id: 3,
-    title: "Kitchen Display System / Digital Signage",
-    description: "Eliminate paper ticket errors completely. Sync front-of-house orders directly with kitchen monitors for zero delays and seamless coordination.",
-    image: "/selfox-mobile-kitchen-display.jpg",
-    accent: "Kitchen Operations KDS",
-    quote: "No more lost paper tickets or handwritten order confusions. The color-coded wait timers keep our line cooks perfectly synchronized during busy weekend dinner rushes.",
-    author: "Chef David Miller, Gastro Pub",
-    details: [
-      "Dynamic color-coded order wait timers",
-      "Acoustic line alerts for fresh incoming items",
-      "Synchronized chef station item grouping",
-      "Zero delays between counter kiosk and line assembly"
-    ]
-  },
-  {
-    id: 4,
-    title: "Digital Contactless QR Tabletop Menu",
-    description: "Empower tableside ordering. Customers scan, browse, customize orders, and pay instantly without waiting for a server, increasing table turn speed.",
-    image: "/selfox-pos-qrocde.-jpg.jpg",
-    accent: "Tableside Smart Menu",
-    quote: "By placing smart QR tabletop cards, our table turnover speeds increased by 25%. Customers select modifiers, place orders, and checkout instantly without server delay.",
-    author: "Sara Varma, The Daily Brew",
-    details: [
-      "Instant cloud-based digital menu price updates",
-      "Full customization options (add-ons & allergies)",
-      "Instant checkout via digital wallets or UPI",
-      "Automatic physical table number routing to KDS"
-    ]
-  }
-];
+import Link from "next/link";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function Solutions() {
-  const [activeSolution, setActiveSolution] = useState<typeof solutions[0] | null>(null);
+  const content = useSiteContent("solutions", {
+    title: "Explore More Restaurant <span class=\"text-red-600\">Solutions</span>",
+    subtitle: "Streamline your food business operations, lower overhead costs, and elevate the order journey with our interconnected smart systems.",
+    sol1Title: "SelfX POS Cloud Software & Hardware",
+    sol1Desc: "The ultimate cloud POS system for rapid checkout, real-time analytics, and fluid inventory tracking. Hand-in-hand integration with sleek hardware devices.",
+    sol1Image: "/selfox-pos (1).jpg",
+    sol1Accent: "Hardware & Cloud POS",
+    sol1Quote: "Our front counters have never run smoother. Staff training time went from days to minutes, and the offline transactions buffer ensures we never lose a sale even if internet feeds drop.",
+    sol1Author: "Elena Chen, Yume Boba Tea",
+    sol1Details: "Real-time split billing and table mapping,Robust offline operations buffering,Instant inventory sync and stock alerts,Live integration with kitchen thermal printers",
+    sol2Title: "Your Own Restaurant Delivery App / Website",
+    sol2Desc: "Reclaim your profits from third-party aggregators. Sell directly to your customers with your branded, ultra-fast ordering app and responsive web portal.",
+    sol2Image: "/selfox-mobile-delivry-app.jpg",
+    sol2Accent: "Branded Digital Ordering",
+    sol2Quote: "Reclaiming our digital ordering channel with a custom branded app saved us over ₹45,000 in monthly aggregator commissions. Customers love the direct checkout flow.",
+    sol2Author: "Marcus Lindqvist, Nordic Kitchen",
+    sol2Details: "Zero commission fees per digital order,Complete ownership of client email & phone data,Interactive coupon and push notification engine,Mobile-first responsive ordering interface",
+    sol3Title: "Kitchen Display System / Digital Signage",
+    sol3Desc: "Eliminate paper ticket errors completely. Sync front-of-house orders directly with kitchen monitors for zero delays and seamless coordination.",
+    sol3Image: "/selfox-mobile-kitchen-display.jpg",
+    sol3Accent: "Kitchen Operations KDS",
+    sol3Quote: "No more lost paper tickets or handwritten order confusions. The color-coded wait timers keep our line cooks perfectly synchronized during busy weekend dinner rushes.",
+    sol3Author: "Chef David Miller, Gastro Pub",
+    sol3Details: "Dynamic color-coded order wait timers,Acoustic line alerts for fresh incoming items,Synchronized chef station item grouping,Zero delays between counter kiosk and line assembly",
+    sol4Title: "Digital Contactless QR Tabletop Menu",
+    sol4Desc: "Empower tableside ordering. Customers scan, browse, customize orders, and pay instantly without waiting for a server, increasing table turn speed.",
+    sol4Image: "/selfox-pos-qrocde.-jpg.jpg",
+    sol4Accent: "Tableside Smart Menu",
+    sol4Quote: "By placing smart QR tabletop cards, our table turnover speeds increased by 25%. Customers select modifiers, place orders, and checkout instantly without server delay.",
+    sol4Author: "Sara Varma, The Daily Brew",
+    sol4Details: "Instant cloud-based digital menu price updates,Full customization options (add-ons & allergies),Instant checkout via digital wallets or UPI,Automatic physical table number routing to KDS"
+  });
+
+  const solutionsData = [
+    {
+      id: 1,
+      title: content.sol1Title,
+      description: content.sol1Desc,
+      image: content.sol1Image,
+      accent: content.sol1Accent,
+      quote: content.sol1Quote,
+      author: content.sol1Author,
+      details: content.sol1Details.split(",").map((s: string) => s.trim()).filter(Boolean)
+    },
+    {
+      id: 2,
+      title: content.sol2Title,
+      description: content.sol2Desc,
+      image: content.sol2Image,
+      accent: content.sol2Accent,
+      quote: content.sol2Quote,
+      author: content.sol2Author,
+      details: content.sol2Details.split(",").map((s: string) => s.trim()).filter(Boolean)
+    },
+    {
+      id: 3,
+      title: content.sol3Title,
+      description: content.sol3Desc,
+      image: content.sol3Image,
+      accent: content.sol3Accent,
+      quote: content.sol3Quote,
+      author: content.sol3Author,
+      details: content.sol3Details.split(",").map((s: string) => s.trim()).filter(Boolean)
+    },
+    {
+      id: 4,
+      title: content.sol4Title,
+      description: content.sol4Desc,
+      image: content.sol4Image,
+      accent: content.sol4Accent,
+      quote: content.sol4Quote,
+      author: content.sol4Author,
+      details: content.sol4Details.split(",").map((s: string) => s.trim()).filter(Boolean)
+    }
+  ];
+
+  const [activeSolution, setActiveSolution] = useState<typeof solutionsData[0] | null>(null);
 
   return (
     <section id="solutions" className="py-24 md:py-32 bg-white relative overflow-hidden">
@@ -80,18 +95,16 @@ export default function Solutions() {
           <span className="text-red-600 font-bold text-xs uppercase tracking-widest block mb-3">
             System Offerings
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950 mb-6">
-            Explore More Restaurant <span className="text-red-600">Solutions</span>
-          </h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950 mb-6" dangerouslySetInnerHTML={{ __html: content.title }} />
           <p className="text-base md:text-lg text-zinc-650 leading-relaxed font-normal">
-            Streamline your food business operations, lower overhead costs, and elevate the order journey with our interconnected smart systems.
+            {content.subtitle}
           </p>
         </div>
 
         {/* 4 Cards Grid - One Row Only */}
         <div className="w-full overflow-x-auto pb-8">
           <div className="grid grid-cols-4 gap-4 lg:gap-8 min-w-[1200px] lg:min-w-0">
-            {solutions.map((sol) => (
+            {solutionsData.map((sol) => (
               <div
                 key={sol.id}
                 className="relative rounded-[2rem] overflow-hidden border border-zinc-200/80 shadow-lg bg-zinc-50 group hover:shadow-xl hover:border-zinc-300 transition-all duration-300 flex flex-col"
@@ -199,14 +212,14 @@ export default function Solutions() {
                 </div>
 
                 <div className="pt-8 flex">
-                  <a
+                  <Link
                     href="/book-demo"
                     onClick={() => setActiveSolution(null)}
                     className="group flex items-center justify-center gap-1.5 px-6 py-3 rounded-full text-sm font-bold bg-red-600 text-white hover:bg-red-700 transition-all hover:scale-102 active:scale-98"
                   >
                     Request Free Setup Demo
                     <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -217,3 +230,4 @@ export default function Solutions() {
     </section>
   );
 }
+

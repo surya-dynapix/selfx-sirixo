@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 interface DropdownItem {
   name: string;
@@ -150,9 +151,9 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 group shrink-0">
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
             <img src="/logo.png" alt="SelfX Logo" className="h-8 w-auto" />
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-3 text-sm font-semibold text-zinc-600">
@@ -169,9 +170,9 @@ export default function Navbar() {
                     <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === index ? "rotate-180 text-red-600" : ""}`} />
                   </button>
                 ) : (
-                  <a href={item.href} className="hover:text-zinc-950 transition-colors py-1">
+                  <Link href={item.href || "#"} className="hover:text-zinc-950 transition-colors py-1">
                     {item.label}
-                  </a>
+                  </Link>
                 )}
 
                 {/* Dropdown Content */}
@@ -192,7 +193,7 @@ export default function Navbar() {
                     >
                       <div className={`grid gap-1.5 ${item.label === "Products" ? "grid-cols-2" : "grid-cols-1"}`}>
                         {item.dropdownItems?.map((subItem, subIndex) => (
-                          <a
+                          <Link
                             key={subIndex}
                             href={subItem.href}
                             className={`group/item flex items-start gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors ${
@@ -215,7 +216,7 @@ export default function Navbar() {
                                 </p>
                               )}
                             </div>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -239,13 +240,13 @@ export default function Navbar() {
                 </span>
               )}
             </button>
-            <a
+            <Link
               href="/book-demo"
               className="group relative flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-bold bg-zinc-900 text-white transition-all overflow-hidden hover:bg-zinc-800 shadow-sm active:scale-98"
             >
               Book a Demo
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu and cart */}
@@ -303,7 +304,7 @@ export default function Navbar() {
                             className="pl-2 mt-1.5 flex flex-col gap-3 overflow-hidden"
                           >
                             {item.dropdownItems?.map((subItem, subIndex) => (
-                              <a
+                              <Link
                                 key={subIndex}
                                 href={subItem.href}
                                 onClick={() => setIsOpen(false)}
@@ -320,32 +321,32 @@ export default function Navbar() {
                                     </p>
                                   )}
                                 </div>
-                              </a>
+                              </Link>
                             ))}
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </>
                   ) : (
-                    <a
-                      href={item.href}
+                    <Link
+                      href={item.href || "#"}
                       onClick={() => setIsOpen(false)}
                       className="font-bold text-zinc-900 py-1.5 hover:text-red-600 transition-colors"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   )}
                 </div>
               ))}
 
-              <a
+              <Link
                 href="/book-demo"
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center gap-1.5 w-full mt-3 py-3 rounded-full bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
               >
                 Book a Demo
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

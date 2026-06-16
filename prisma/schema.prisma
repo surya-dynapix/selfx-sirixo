@@ -58,3 +58,12 @@ model Post {
   updatedAt   DateTime @updatedAt
 }
 
+model SiteContent {
+  id        String   @id @default(cuid())
+  page      String
+  section   String
+  content   String
+  updatedAt DateTime @updatedAt
+
+  @@unique([page, section])
+}

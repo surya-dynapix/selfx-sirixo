@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, Package, LogOut, Hexagon, PenTool } from "lucide-react";
+import { LayoutDashboard, Users, Package, LogOut, Hexagon, PenTool, Settings } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -16,6 +16,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: "Leads & Quotes", href: "/admin/leads", icon: Users },
     { name: "Inventory CMS", href: "/admin/inventory", icon: Package },
     { name: "Marketing CMS", href: "/admin/marketing", icon: PenTool },
+    { name: "Site Content CMS", href: "/admin/content", icon: Settings },
   ];
 
   return (

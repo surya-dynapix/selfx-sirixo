@@ -161,3 +161,38 @@ export async function deletePost(id: string) {
     return { success: false, error: "Failed to delete post" };
   }
 }
+
+// Site Content CMS Actions
+export async function updateSiteContent(page: string, section: string, content: string) {
+  try {
+    await prisma.siteContent.upsert({
+      where: {
+        page_section: {
+          page,
+          section,
+        }
+      },
+      update: { content },
+      create: { page, section, content },
+    });
+    
+    // Revalidate the page so changes reflect immediately
+    let path = "/";
+    if (page === "home") {
+      path = "/";
+    } else if (page.startsWith("product-")) {
+      path = `/product/${page.substring("product-".length)}`;
+    } else if (page.startsWith("solutions-")) {
+      path = `/solutions/${page.substring("solutions-".length)}`;
+    } else {
+      path = `/${page}`;
+    }
+    revalidatePath(path);
+    revalidatePath("/admin/content");
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating site content:", error);
+    return { success: false, error: "Failed to update content" };
+  }
+}

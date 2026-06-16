@@ -9,11 +9,12 @@ interface SolutionHeroProps {
   description?: string;
   imageSrc: string;
   buttonText?: string;
+  secondaryButtonText?: string;
 }
 
-export default function SolutionHero({ title, subtitle, description, imageSrc, buttonText = "Book a Demo" }: SolutionHeroProps) {
+export default function SolutionHero({ title, subtitle, description, imageSrc, buttonText = "Book a Demo", secondaryButtonText }: SolutionHeroProps) {
   return (
-    <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[75vh] min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -23,7 +24,7 @@ export default function SolutionHero({ title, subtitle, description, imageSrc, b
           className="object-cover object-center" 
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto mt-20">
@@ -43,9 +44,16 @@ export default function SolutionHero({ title, subtitle, description, imageSrc, b
               {description}
             </p>
           )}
-          <button className="px-10 py-4 rounded-full bg-red-600 text-white font-black tracking-wide hover:bg-red-700 hover:scale-105 transition-all shadow-[0_0_30px_rgba(220,38,38,0.4)]">
-            {buttonText}
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="px-10 py-4 rounded-full bg-red-600 text-white font-black tracking-wide hover:bg-red-700 hover:scale-105 transition-all shadow-[0_0_30px_rgba(220,38,38,0.4)] w-full sm:w-auto">
+              {buttonText}
+            </button>
+            {secondaryButtonText && (
+              <button className="px-10 py-4 rounded-full bg-white/10 text-white border border-white/20 font-bold tracking-wide hover:bg-white/20 hover:scale-105 transition-all backdrop-blur-sm w-full sm:w-auto">
+                {secondaryButtonText}
+              </button>
+            )}
+          </div>
         </motion.div>
       </div>
     </section>
